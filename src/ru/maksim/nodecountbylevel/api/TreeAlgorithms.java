@@ -7,8 +7,6 @@ import java.util.Queue;
 
 public class TreeAlgorithms {
 
-    private static final Node END_OF_LEVEL = new Node(0);
-    public static final int TREE_EMPTY = -1;
     public static final int NO_SUCH_LEVEL = -2;
 
     private TreeAlgorithms() {
@@ -20,32 +18,30 @@ public class TreeAlgorithms {
             throw new IllegalArgumentException("level cannot be negative");
         }
         if (tree.isEmpty()) {
-            return TREE_EMPTY;
+            return 0;
         }
 
         Queue<Node> nodes = new ArrayDeque<>();
         nodes.add(tree.getRoot());
-        nodes.add(END_OF_LEVEL);
         int currentLevel = 0;
         while (currentLevel < level) {
-            Node node = nodes.remove();
-            if (node == END_OF_LEVEL) {
-                nodes.add(END_OF_LEVEL);
-                currentLevel++;
-                continue;
+            int count = nodes.size();
+            for (int i = 0; i < count; i++) {
+                Node node = nodes.poll();
+                Node left = node.getLeft();
+                if (left != null) {
+                    nodes.add(left);
+                }
+                Node right = node.getRight();
+                if (right != null) {
+                    nodes.add(right);
+                }
             }
-            Node left = node.getLeft();
-            if (left != null) {
-                nodes.add(left);
-            }
-            Node right = node.getRight();
-            if (right != null) {
-                nodes.add(right);
-            }
-            if (nodes.size() == 1) {
+            currentLevel++;
+            if (nodes.isEmpty()) {
                 return NO_SUCH_LEVEL;
             }
         }
-        return nodes.size() - 1;
+        return nodes.size();
     }
 }

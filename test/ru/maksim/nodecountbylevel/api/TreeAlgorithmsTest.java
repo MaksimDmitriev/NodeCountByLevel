@@ -11,7 +11,7 @@ public class TreeAlgorithmsTest {
     @Test
     void assertEmptyTree() {
         BinarySearchTree tree = new BinarySearchTree();
-        assertEquals(TreeAlgorithms.TREE_EMPTY, TreeAlgorithms.getNodeCountByLevel(tree, 0));
+        assertEquals(0, TreeAlgorithms.getNodeCountByLevel(tree, 0));
     }
 
     @Test
