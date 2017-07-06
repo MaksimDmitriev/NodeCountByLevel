@@ -7,8 +7,6 @@ import java.util.Queue;
 
 public class TreeAlgorithms {
 
-    public static final int NO_SUCH_LEVEL = -2;
-
     private TreeAlgorithms() {
         throw new AssertionError();
     }
@@ -38,9 +36,6 @@ public class TreeAlgorithms {
                 }
             }
             currentLevel++;
-            if (nodes.isEmpty()) {
-                return NO_SUCH_LEVEL;
-            }
         }
         return nodes.size();
     }

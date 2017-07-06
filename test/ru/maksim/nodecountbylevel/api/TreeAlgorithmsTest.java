@@ -41,7 +41,7 @@ public class TreeAlgorithmsTest {
     @Test
     void assertLevelGreaterThanTreeHas() {
         BinarySearchTree tree = new BinarySearchTree(10, 4, 16, 2, 7, 12);
-        assertEquals(TreeAlgorithms.NO_SUCH_LEVEL, TreeAlgorithms.getNodeCountByLevel(tree, 20));
+        assertEquals(0, TreeAlgorithms.getNodeCountByLevel(tree, 20));
     }
 
     @Test
